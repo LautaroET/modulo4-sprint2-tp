@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
+// Tarjeta individual de película con botón para agregarla a la lista.
 function MovieCard({ movie, onAdd }) {
   return (
     <div className="bg-gray-800 rounded-xl p-4 shadow-lg transition-all duration-300 flex flex-col items-center">
@@ -18,6 +19,7 @@ function MovieCard({ movie, onAdd }) {
 }
 
 export default MovieCard;
+
 
 
 

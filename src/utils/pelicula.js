@@ -1,5 +1,4 @@
-// Arreglo de objetos que representan películas disponibles.
-// Cada objeto tiene un id, nombre y ruta a su imagen correspondiente.
+// Arreglo de objetos con las películas disponibles.
 export const pelicula = [
   { id: 1, name: "Guardianes", imagen: "/src/assets/img/imagen_01.jpg" },
   { id: 2, name: "Iron Man", imagen: "/src/assets/img/imagen_02.jpg" },
@@ -14,5 +13,6 @@ export const pelicula = [
   { id: 11, name: "Desastre En Corea", imagen: "/src/assets/img/imagen_11.jpg" },
   { id: 12, name: "Barrenderos espaciales", imagen: "/src/assets/img/imagen_12.jpg" },
 ];
+
 
 

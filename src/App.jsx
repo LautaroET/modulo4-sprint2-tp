@@ -7,43 +7,55 @@ import WatchlistModal from "./components/WatchlistModal";
 
 // Componente principal de la aplicación.
 function App() {
-  const [watchlist, setWatchlist] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(()=>{
-      const savedWatchlist = localStorage.getItem("watchlist");
-      return savedWatchlist ? JSON.parse(localStorage.getItem("watchlist")) : [];
-    });
-  
-    useEffect(() => {
-      localStorage.setItem("watchlist",JSON.stringify(watchlist));
-    }, [watchlist]);
-  
-    const addToWatchlist = (movie) => {
-      const movieExists = watchlist.some(item => item.id === movie.id);
-      if(!movieExists){
-        setWatchlist([...watchlist, movie]); 
-        localStorage.setItem("watchlist", JSON.stringify([...watchlist, movie]));
-      }
-    };
-  
-    const removeFromWatchlist = (id) => { 
-      const updatedList = watchlist.filter(movie => movie.id !== id); setWatchlist(updatedList); 
-      localStorage.setItem("watchlist", JSON.stringify(updatedList)); 
-    };
-  
-  
-    const toggleModal = () => {
-      setIsModalOpen(!isModalOpen);
-    };
+  // Estado que almacena la lista de películas favoritas (watchlist).
+  const [watchlist, setWatchlist] = useState(() => {
+    // Inicializa desde localStorage si existe información previa.
+    const savedWatchlist = localStorage.getItem("watchlist");
+    return savedWatchlist ? JSON.parse(savedWatchlist) : [];
+  });
+
+  // Sincroniza la watchlist con localStorage cada vez que cambia.
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }, [watchlist]);
+
+  // Agrega una película a la watchlist, evitando duplicados.
+  const addToWatchlist = (movie) => {
+    const movieExists = watchlist.some(item => item.id === movie.id);
+    if (!movieExists) {
+      const updated = [...watchlist, movie];
+      setWatchlist(updated); 
+      localStorage.setItem("watchlist", JSON.stringify(updated));
+    }
+  };
+
+  // Elimina una película por ID de la watchlist.
+  const removeFromWatchlist = (id) => { 
+    const updatedList = watchlist.filter(movie => movie.id !== id); 
+    setWatchlist(updatedList); 
+    localStorage.setItem("watchlist", JSON.stringify(updatedList)); 
+  };
+
+  // Estado que controla la visibilidad del modal.
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Alterna el modal abierto/cerrado.
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <>
       {/* Encabezado con botón para abrir el modal */}
       <Header toggleModal={toggleModal} isModalOpen={isModalOpen} />
-      {/* Lista de películas con opción para agregar a la watchlist */}
+      
+      {/* Lista de películas con botón para agregarlas a la watchlist */}
       <MovieList addToWatchlist={addToWatchlist} />
-      {/* Pie de página interactivo */}
+
+      {/* Pie de página con créditos */}
       <Footer />
       
-      {/* Modal que muestra la watchlist si está abierto */}
+      {/* Modal de watchlist visible si isModalOpen es true */}
       {isModalOpen && (
         <WatchlistModal
           watchlist={watchlist}
@@ -57,6 +69,7 @@ function App() {
 
 // Exporta App como componente predeterminado.
 export default App;
+
 
 
 

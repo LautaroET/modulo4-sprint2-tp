@@ -1,5 +1,6 @@
 import React from "react";
 
+// Botón reutilizable con estilos y animación.
 function Button({ onClick, children }) {
   return (
     <button
@@ -12,3 +13,4 @@ function Button({ onClick, children }) {
 }
 
 export default Button;
+
