@@ -7,6 +7,7 @@ import WatchlistModal from "./components/WatchlistModal";
 
 // Componente principal de la aplicación.
 function App() {
+  //Cuando inicias la aplicación, intenta cargar la lista guardada:
   // Estado que almacena la lista de películas favoritas (watchlist).
   const [watchlist, setWatchlist] = useState(() => {
     // Inicializa desde localStorage si existe información previa.
