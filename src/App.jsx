@@ -27,7 +27,7 @@ function App() {
       const updated = [...watchlist, movie];
       setWatchlist(updated); 
       localStorage.setItem("watchlist", JSON.stringify(updated));
-    }
+    } 
   };
 
   // Elimina una película por ID de la watchlist.
